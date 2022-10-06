@@ -12,41 +12,60 @@
 #define SQRT(x, y) sqrtf(x + y)
 #define Division 2	//	Деление на 2
 #define SQ(x1, x2, x3, y1, y2, y3) p * ((p - AB) + (p - BC) + (p - AC))
-#define ABC(x) abs(x)
-#define AB (SQRT(pow(x2 - x1, 2), pow(y2 - y1, 2)))
-#define BC (SQRT(pow(x3 - x2, 2), pow(y3 - y2, 2)))
-#define AC (SQRT(pow(x3 - x1, 2), pow(y3 - y1, 2)))
+#define ABC(x) abs(x)	//	Модуль
+#define AB (SQRT(pow(x2 - x1, 2), pow(y2 - y1, 2)))	//	Нахождение стороны AB
+#define BC (SQRT(pow(x3 - x2, 2), pow(y3 - y2, 2)))	//	Нахождение стороны BC
+#define AC (SQRT(pow(x3 - x1, 2), pow(y3 - y1, 2)))	//	Нахождение стороны AC
+#define Proverka(x1,x2,x3,y1,y2,y3) (x1 - x3) * (y2 - y3) - (x2 - x3) * (y1 - y3)	//	Проверка
+#define PL (Proverka(x1, x2, x3, y1, y2, y3)) / Division
 
 double Triangle()
 {
-	/*double x1, x2, x3;
-	double y1, y2, y3;*/
 	double P, p, S;
 
-	printf("Координаты первой точки: (%d, %d)\n", x1, y1);
-	printf("Координаты второй точки: (%d, %d)\n", x2, y2);
-	printf("Координаты третьей точки: (%d, %d)\n", x3, y3);
-	/*printf("Введите координаты первой точки:\n");
-	scanf_s("%.2f %.2f", x1, y1);
-	printf("Введите координаты первой точки:\n");
-	scanf_s("%.2f %.2f", x2, y2);
-	printf("Введите координаты первой точки:\n");
-	scanf_s("%.2f %.2f", x3, y3);*/
+#if ((x1 == x2) && (x2 == x3))
+	{
+		printf("Три точки образуют вектор");
+	}
+#elif ( PL == 0)
+	{
+		printf("Стороны лежат на одной прямой");
+	}
+#elif ((y1 == y2) && (y2 == y3))
+	{
+		printf("Три точки образуют вектор");
+	}
+#elif ((y1 == y2) && (x1 == x2))
+	{
+		printf("Три точки образуют вектор");
+	}
+#elif ((y2 == y3) && (x2 == x3))
+	{
+		printf("Три точки образуют вектор");
+	}
+#elif ((y1 == y3) && (x1 == x3))
+	{
+		printf("Три точки образуют вектор");
+	}
 
-	/*a = (SQRT(pow(x2 - x1, 2), pow(y2 - y1, 2)));*/
-	/*BC = (SQRT(pow(x3 - x2, 2), pow(y3 - y2, 2)));
-	AC = (SQRT(pow(x3 - x1, 2), pow(y3 - y1, 2)));*/
+#else
+	{
+		printf("Координаты первой точки: (%d, %d)\n", x1, y1);
+		printf("Координаты второй точки: (%d, %d)\n", x2, y2);
+		printf("Координаты третьей точки: (%d, %d)\n", x3, y3);
 
-	printf("Длина AB: %.2f\n", AB);
-	printf("Длина BC: %.2f\n", BC);
-	printf("Длина AC: %.2f\n", AC);
+		printf("Длина AB: %.2f\n", AB);
+		printf("Длина BC: %.2f\n", BC);
+		printf("Длина AC: %.2f\n", AC);
 
-	P = AB + BC + AC;
-	printf("Периметр треугольника: %.2f\n", P);
+		P = AB + BC + AC;
+		printf("Периметр треугольника: %.2f\n", P);
 
-	p = P / Division;
-	S = ABC(SQ(x1, x2, x3, y1, y2, y3)) / Division;
-	printf("Площадь треугольника: %.2f\n", S);
+		p = P / Division;
+		S = ABC(SQ(x1, x2, x3, y1, y2, y3)) / Division;
+		printf("Площадь треугольника: %.2f\n", S);
+	}
+#endif
 }
 
 int V()
